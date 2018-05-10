@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:o="http://omnifaces.org/ui">
+
+<f:metadata>
+    <f:viewParam name="id" value="#{carPage.selectedId}"/>
+    <f:viewAction action="#{carPage.loadCar}"/>
+</f:metadata>
+
+<head jsf:id="head">
+    <title>JSFlive JSF 2.2 - HTML5</title>
+</head>
+<body jsf:id="body">
+<o:importConstants type="ee.tptlive.testing.exam.model.CarEngineType" />
+<o:form id="car-form" includeRequestParams="true">
+    <h:messages/>
+    <h:panelGrid columns="2">
+        <h:outputText value="ID:"/>
+        <h:outputText value="#{carPage.selectedCar.id}"/>
+        <h:outputText value="Brand:"/>
+        <h:outputText value="#{carPage.selectedCar.brand}"/>
+
+        <label jsf:for="model">Model:</label>
+        <input type="text" jsf:id="model" jsf:value="#{carPage.selectedCar.model}"
+               placeholder="Enter model" data-required="true">
+            <f:validateRequired />
+            <f:validateLength minimum="2" maximum="20"/>
+        </input>
+        <label jsf:for="year">Age:</label>
+        <h:inputText id="year" value="#{carPage.selectedCar.year}"
+                     pt:type="number" pt:placeholder="Enter year">
+            <f:validateRequired />
+            <f:passThroughAttribute name="data-required" value="true"/>
+        </h:inputText>
+        <label jsf:for="type">Engine:</label>
+        <h:selectOneMenu id="type" value="#{carPage.selectedCar.engineType}" >
+            <f:selectItems value="#{CarEngineType}" />
+            <f:validateRequired />
+        </h:selectOneMenu>
+        <label jsf:for="available">Is available:</label>
+        <h:selectBooleanCheckbox id="available" value="#{carPage.selectedCar.available}" >
+        </h:selectBooleanCheckbox>
+    </h:panelGrid>
+
+    <button id="submitBtn" jsf:action="carDetails?faces-redirect=true&amp;includeViewParams=true">Submit</button>
+</o:form>
+
+<script type="text/javascript" jsf:name="jquery-1.10.2.min.js" jsf:target="head"></script>
+
+<script type="text/javascript" jsf:name="script.js"></script>
+
+</body>
+</html>

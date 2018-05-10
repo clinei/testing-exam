@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+<head jsf:id="head">
+    <title>UI Tests Demo</title>
+</head>
+<body jsf:id="body">
+<h1>CARS</h1>
+<form jsf:id="form">
+    <h:dataTable id="persons" value="#{carPage.cars}" var="car">
+        <h:column>
+            <f:facet name="header">ID</f:facet>
+            <a jsf:outcome="carDetails" title="Show #{car.id}">
+                ${car.id}
+                <f:param name="id" value="#{car.id}"/>
+            </a>
+        </h:column>
+        <h:column>
+            <f:facet name="header">Brand</f:facet>
+            ${car.brand}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Model</f:facet>
+            ${car.model}
+        </h:column>
+    </h:dataTable>
+</form>
+</body>
+</html>

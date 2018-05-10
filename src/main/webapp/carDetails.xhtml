@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:o="http://omnifaces.org/ui">
+
+<f:metadata>
+    <f:viewParam name="id" value="#{carPage.selectedId}"/>
+    <f:viewAction action="#{carPage.loadCar}"/>
+</f:metadata>
+
+<head jsf:id="head">
+    <title>JSFlive JSF 2.2 - HTML5</title>
+</head>
+<body jsf:id="body">
+<o:form includeRequestParams="true">
+    <h:messages/>
+    <h:panelGrid columns="2">
+        <h:outputText value="ID:"/>
+        <h:outputText value="#{carPage.selectedCar.id}"/>
+        <h:outputText value="Brand:"/>
+        <h:outputText value="#{carPage.selectedCar.brand}"/>
+        <h:outputText value="Model:"/>
+        <h:outputText value="#{carPage.selectedCar.model}"/>
+        <h:outputText value="Year:"/>
+        <h:outputText value="#{carPage.selectedCar.year}"/>
+        <h:outputText value="Engine:"/>
+        <h:outputText value="#{carPage.selectedCar.engineType}"/>
+        <h:outputText value="Available:"/>
+        <h:outputText value="#{carPage.selectedCar.available ? 'YES' : 'NO'}"/>
+    </h:panelGrid>
+
+    <br/>
+    <a id="editBtn" jsf:outcome="carEdit" title="Edit car">
+        Edit
+        <f:param name="id" value="#{carPage.selectedCar.id}"/>
+    </a>
+    &#160;
+    <a id="backBtn" jsf:outcome="carList" title="Back to car list">Back</a>
+</o:form>
+</body>
+</html>
